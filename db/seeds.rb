@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require faker 
+
+user = {}
+user['password'] = 'qwerty'
+user['password_confirmation'] = 'qwerty'
+
+ActicveRecord::Base.transaction do 
+	10.times do 
+		user['name'] = 
+		user['email'] =
+
+		User.create(user) 
+	end 
+end 

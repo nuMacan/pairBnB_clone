@@ -11,6 +11,8 @@ gem 'omniauth-facebook'
 gem "figaro"
 #added gem clearance for user management 
 gem "clearance"
+#added faker to populate database seeds.rb
+gem 'faker', '~> 1.6', '>= 1.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
