@@ -4,7 +4,7 @@
    # get 'home/index'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
-  resource :session, controller: "sessions", only: [:create]
+  resource :session, controller: "sessions", only: [:create, :edit]
 
   resources :users, controller: "users", only: [:create] do
     resource :password,

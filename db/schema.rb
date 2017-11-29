@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 20171127061630) do
   create_table "listings", force: :cascade do |t|
     t.string "listing_name"
     t.string "listing_type"
-    t.integer "room_number"
+    t.integer "number_of_rooms"
     t.string "city"
     t.string "price"
     t.boolean "wifi"
+    t.boolean "smoking_room"
     t.boolean "active"
     t.bigint "user_id"
     t.datetime "created_at", null: false
