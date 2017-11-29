@@ -5,10 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#implement facebook authentication
-gem 'omniauth-facebook'
-#adding privacy concern
-gem "figaro"
 #added gem clearance for user management 
 gem "clearance"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
