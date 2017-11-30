@@ -4,8 +4,8 @@
 	</div>
 	<div class="panel-body">
 		<div class="container">
-			
-			<%= form_for @listing, html: {multipart: true} do |f| %>
+			<!-- since this is nested array, you have to define the first routes and then the second routes, listing is belong to user, so user has to be defined first. -->
+			<%= form_for [current_user, @listing], html: {multipart: true} do |f| %>
 
 				<div class="row">
 					<div class="form-group">
@@ -25,7 +25,7 @@
 					<div class="col-md-4 select">
 						<div class="form-group">
 							<label>Listing Type</label>
-							<%= f.select :listing_type, [["Apartment","Apartment"], ["House","House"], ["Bed & Breakfast","Bed & Breakfast"]], id: "listing_type", prompt: "Select", class: "form-control" %>
+							<%= f.select :listing_type, [["Apartment","Apartment"], ["Castle","Castle"], ["House","House"], ["Private Room", "Private Room"], ["Tree House", "Tree House" ], ["Villa", "Villa"] ], id: "listing_type", prompt: "Select", class: "form-control" %>
 						</div>
 					</div>
 
@@ -77,9 +77,19 @@
 						</div>		
 					</div>
 				</div>
-
 				
-			<% end %>
+
+				<div class="row">
+					<div class="form-group">
+						<%= f.check_box :active %> Active
+					</div>
+				</div>
+
+				<div class="actions">
+						<%= f.submit "Save", class: "btn btn-primary" %>
+				</div>
+
+				<% end %>
 
 		</div>
 	</div>

@@ -1,6 +1,6 @@
  Rails.application.routes.draw do
 
-   root 'home#index'
+   root 'home#homepage'
    # get 'home/index'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
@@ -10,10 +10,10 @@
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
-      resources :listing, controller: "listings"
+      resources :listings, controller: "listings"
   end
 
-resources :listings
+  # resources :listings
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"

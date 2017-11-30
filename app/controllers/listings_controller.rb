@@ -1,9 +1,9 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, except: [:index_listing, :new, :create]
+  # before_action :set_listing, except: [:index_listing, :new, :create]
   before_action :require_login, except: [:show]
 
 
-  def index_listing
+  def index
     @listings = current_user.listings
   end
 
@@ -15,7 +15,8 @@ class ListingsController < ApplicationController
   def create
     @listing = current_user.listings.build(listing_params)
     if @listing.save
-      redirect_to property_listing_path(@listing), notice: "Saved Succes"
+      # redirect_to "/users/#{current_user.id}/listing", notice: "Saved Succes"
+      redirect_to user_listing_index_path(current_user.id), notice: "Saved Success"
     else 
       flash[:alert] = @listing.error.full_messages
       render :new
@@ -23,11 +24,9 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @photos = @listing.photos
+    # @photos = @listing.photos
   end 
 
-  def pricing
-  end
 
   def description
   end
@@ -51,11 +50,11 @@ class ListingsController < ApplicationController
   end
 
 private
-  def set_listing
-    @listing = Listing.find(params[:id]);
-  end 
+  # def set_listing
+  #   @listing = Listing.find(params[:id])
+  # end 
 
   def listing_params
-    params.required(:listing).permit(:listing_name, :listing_type, :room_number, :city, :price, :wifi, :active)
+    params.require(:listing).permit(:listing_name, :listing_type, :room_number, :city, :price, :wifi, :active)
   end 
 end
