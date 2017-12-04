@@ -1,0 +1,96 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Create a Nice and Comfort Home for Your Guest
+	</div>
+	<div class="panel-body">
+		<div class="container">
+			<!-- since this is nested array, you have to define the first routes and then the second routes, listing is belong to user, so user has to be defined first. -->
+			<%= form_for [current_user, @listing], html: {multipart: true} do |f| %>
+
+				<div class="row">
+					<div class="form-group">
+						<label>Listing Name</label>
+						<%= f.text_field :listing_name, placeholder: "Be clear and descriptive", class: "form-control" %>
+					</div>
+				</div>
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>City</label>
+          					<%= f.select :city, [["Hanoi", "Hanoi"], ["Jakarta", "Jakarta"], ["Kuala Lumpur", "Kuala Lumpur"], ["Singapore", "Singapore"] ],
+        					id: "city", prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+
+				<div class="row">
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>Listing Type</label>
+							<%= f.select :listing_type, [["Apartment","Apartment"], ["Castle","Castle"], ["House","House"], ["Private Room", "Private Room"], ["Tree House", "Tree House" ], ["Villa", "Villa"] ], id: "listing_type", prompt: "Select", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>Number of Rooms</label>
+							<%= f.select :number_of_rooms, [["1", "1"], ["2", "2"], ["3", "3"], ["4+", "4"]],
+          					id: "number_of_rooms", prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+
+					
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Price</label>
+							<div class="input-group">
+								<div class="input-group-addon">$
+								<%= f.text_field :price, placeholder: "eg. $100", class: "form-group" %></div>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<%= f.check_box :wifi %> WiFi
+						</div>
+					</div>					
+				</div>	
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<%= f.check_box :smoking_room %> Smoking Room
+						</div>
+					</div>					
+				</div>	
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">							
+							<span class="btn btn-default btn-file">
+							    <i class="fa fa-cloud-upload fa-lg"></i> Upload Photos 
+							    <%= file_field_tag "images[]", type: :file, multiple: true %>
+							</span>
+						</div>		
+					</div>
+				</div>
+				
+
+				<div class="row">
+					<div class="form-group">
+						<%= f.check_box :active %> Active
+					</div>
+				</div>
+
+				<div class="actions">
+						<%= f.submit "Save", class: "btn btn-primary" %>
+				</div>
+
+				<% end %>
+
+		</div>
+	</div>
+</div>

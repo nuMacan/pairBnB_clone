@@ -1,0 +1,25 @@
+listing index
+<br>
+<%= link_to "create new listing", new_user_listing_path(current_user.id) %>
+
+<h1> Available Rooms for your booking</h1>
+<br><br>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>Price</th>
+  </tr>
+ 
+<% @listings.each do |l| %>
+  <tr> 
+    <td><%= l.listing_name %> </td>
+    <td><%= l.city %></td>
+    <td><%= l.price %></td>
+
+  </tr>
+<% end %>
+</table>
+<br><br>
+<%= paginate @listings %> 
+<%= page_entries_info @listings %>

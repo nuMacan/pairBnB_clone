@@ -1,7 +1,11 @@
 class User < ApplicationRecord
   include Clearance::User
 
+#user management for sign in with omniauth(other site,eg facebook or google)
   has_many :authentications, dependent: :destroy
+
+#listing management, organize relation of user and listing 
+  has_many :listings
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
   	user = self.create!(
@@ -19,5 +23,9 @@ class User < ApplicationRecord
   	x = self.authentications.find_by(provider:'facebook')
   	return x.token unless x.nill
   end 
+
+
+
+
 
 end
