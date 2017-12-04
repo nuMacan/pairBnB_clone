@@ -10,10 +10,16 @@
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
-      resources :listings, controller: "listings"
+    #there are 7 routes for each object, since you use 'only' dont forget to specify everything.
+    resources :listings, 
+      controller: "listings", only: [:create, :edit, :update, :show, :new]
+      get "/listings" => "listings#create", as: "listings_create"
+
   end
 
-  # resources :listings
+  resources :listings, 
+  controller: "listings", only: [:index]
+  
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"

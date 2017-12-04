@@ -1,5 +1,8 @@
 class UsersController < Clearance::UsersController
 
+	# before_action [:show,:edit], show_Users
+	# before_action :set_users, only [:show, :edit]
+
 	def create
 		user = User.new(user_params)
 		if user.save
@@ -9,7 +12,24 @@ class UsersController < Clearance::UsersController
 		end 
 	end 
 
+	def show
+  		@listings = @user.listings
+  	end
+
+
+  def edit
+    @user = current_user
+    redirect_to root_path
+  end
+
+
+	
+
 	private 
+
+	def set_users
+		@user = User.find(params[:id])
+	end
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password)
@@ -28,12 +48,6 @@ class UsersController < Clearance::UsersController
 	#       end 
 	# 	end
 
-	 def show
-  	@listings = @user.listings
-  end
 
-	def set_users
-		@user = User.find(params[:id])
-	end
 
 end

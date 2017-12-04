@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
 
 
   def index
-    @listings = current_user.listings
+    @listings = Listing.all.order(:city).page(params[:page]).per(10)
   end
 
   def new
@@ -16,7 +16,8 @@ class ListingsController < ApplicationController
     @listing = current_user.listings.build(listing_params)
     if @listing.save
       # redirect_to "/users/#{current_user.id}/listing", notice: "Saved Succes"
-      redirect_to user_listing_index_path(current_user.id), notice: "Saved Success"
+      # byebug
+      redirect_to user_listing_path(current_user.id, @listing.id), notice: "Saved Success"
     else 
       flash[:alert] = @listing.error.full_messages
       render :new
@@ -24,6 +25,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @listing =  Listing.find(params[:id])
     # @photos = @listing.photos
   end 
 
@@ -50,11 +52,11 @@ class ListingsController < ApplicationController
   end
 
 private
-  # def set_listing
-  #   @listing = Listing.find(params[:id])
-  # end 
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end 
 
   def listing_params
-    params.require(:listing).permit(:listing_name, :listing_type, :room_number, :city, :price, :wifi, :active)
+    params.require(:listing).permit(:listing_name, :listing_type, :number_of_rooms, :city, :price, :wifi, :active, :user_id)
   end 
 end

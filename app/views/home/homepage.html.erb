@@ -6,8 +6,29 @@ Welcome to my homepage
  <%= link_to t(".sign_up"), sign_up_path %>
  <br>
  <%= link_to "Sign in with Facebook", "/auth/facebook" %><br/>
+<br><br>
 
+<%= link_to "Listing Index", listings_path %>
+<br>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>Price</th>
+  </tr>
+ 
+<% @listings.each do |l| %>
+  <tr> 
+    <td><%= l.listing_name %> </td>
+    <td><%= l.city %></td>
+    <td><%= l.price %></td>
 
+  </tr>
+<% end %>
+</table>
 
+<br><br>
 
+<%= paginate @listings %> 
+<%= page_entries_info @listings %>

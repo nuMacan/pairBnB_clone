@@ -31,7 +31,7 @@ ActiveRecord::Base.transaction do
 	listing['listing_name'] = Faker::App.name
 	listing['listing_type'] = ["Apartment", "Castle", "House", "Private Room", "Tree House", "Villa"].sample
 	listing['number_of_rooms'] = rand(1..5)
-	listing['city'] = Faker::Address.city
+	listing['city'] = ["Hanoi", "Jakarta", "Kuala Lumpur", "Singapore"].sample
 	listing['price'] = rand(60..500)
 	listing['wifi'] = Faker::Boolean
 	listing['smoking_room'] = Faker::Boolean

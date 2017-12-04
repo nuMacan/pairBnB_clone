@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  def index
-  	
+  def homepage
+  	@listings = Listing.all.order(:listing_name).page params[:page]
+
   end
 end
