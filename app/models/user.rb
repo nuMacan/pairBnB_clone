@@ -7,6 +7,8 @@ class User < ApplicationRecord
 #listing management, organize relation of user and listing 
   has_many :listings
 
+  enum role: [:customer, :moderator, :superadmin]
+
   def self.create_with_auth_and_hash(authentication, auth_hash)
   	user = self.create!(
   		name: auth_hash["name"],
