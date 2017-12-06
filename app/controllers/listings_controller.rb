@@ -9,6 +9,14 @@ class ListingsController < ApplicationController
 
   def new
     @listing = current_user.listings.build
+      # authorization code
+      if current_user.superadmin?
+        flash[:notice] = "Sorry. You are not allowed to perform this action."
+        return redirect_to root_path, notice: "Sorry. You do not have the permission to verify a property."
+      end
+      # end authorization code
+
+      # other code to make the new action work!
   end
 
 #use to update room data before run def new
@@ -28,6 +36,22 @@ class ListingsController < ApplicationController
     @listing =  Listing.find(params[:id])
     # @photos = @listing.photos
   end 
+
+
+  #first i ahve to show a verify button whe n i view a specific listing. Show this button
+  #only if i am superamind or moderator (upt oyou).
+  # u need to create a custom route to go to this verify method below
+  # be abel to view a specific listing page
+  # inside that, you ahve tubtton to verify listing if you are a superadmin/moderator
+  #once u click go the method below and update listing
+  def verify
+    if current_user.superadmin?
+      @listing = Listing.find(params[:id])
+      @listing.update(verification: true)
+      flash[:notice] = "Verified!!"
+      redirect_to listing_path(@listing)
+      end
+  end
 
 
   def description
@@ -57,6 +81,7 @@ private
   end 
 
   def listing_params
-    params.require(:listing).permit(:listing_name, :listing_type, :number_of_rooms, :city, :price, :wifi, :active, :user_id)
+    params.require(:listing).permit(:listing_name, :listing_type, :number_of_rooms, :city, :price, :wifi, :active, :user_id, :role)
   end 
+
 end

@@ -1,3 +1,4 @@
+
 class UsersController < Clearance::UsersController
 
 	# before_action [:show,:edit], show_Users

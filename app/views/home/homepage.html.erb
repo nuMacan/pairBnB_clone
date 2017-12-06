@@ -17,12 +17,15 @@ Welcome to my homepage
     <th>City</th>
     <th>Price</th>
   </tr>
- 
+
+
 <% @listings.each do |l| %>
   <tr> 
-    <td><%= l.listing_name %> </td>
+    <td><%= link_to l.listing_name, listing_path(l) %>
+      </td>
     <td><%= l.city %></td>
     <td><%= l.price %></td>
+    <td><%= link_to 'Show More', listing_path(l) %></td>
 
   </tr>
 <% end %>
