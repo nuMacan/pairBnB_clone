@@ -8,19 +8,32 @@
 </head>
 <body>
   
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to "Sign Out", sign_out_path, method: :delete %>
-    <% else -%>
-      <%= link_to "Sign In", sign_in_path %>
-    <% end -%>
-  </div>
-
-   <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%= value %></div>
-    <% end %>
-  </div>
+<ul class="navbar">
+    <li id="tagline"><b>PairBnB</b></li>
+    <li> <%= link_to 'Home', root_path %></li>
+    <li>
+      <form method=post action=/users>
+      <input id="search_box" type=text placeholder="Search a place" name="user[]">
+      </form></li>
+    
+    <li><% flash.each do |key, value| -%>
+        <div id="flash_<%= key %>"><%= value %></div>
+        <% end %></li>
+    <li><% if signed_in? -%>
+          <%=current_user.name.capitalize %>
+        <% else -%>
+          <%= link_to t(".sign_up"), sign_up_path %>
+          <%= link_to "Facebook sign in", "/auth/facebook" %> 
+        <% end -%></li>
+    <li><% if signed_in? -%>
+          <%= link_to "Become a host", new_user_listing_path(current_user.id) %>
+          <% end -%>
+    <li><% if signed_in? -%>
+         <%= button_to "Sign Out", sign_out_path, method: :delete %>
+        <% else -%>
+          <%= link_to "Sign In", sign_in_path %>
+        <% end -%></li>
+  </ul>
 
 
   
