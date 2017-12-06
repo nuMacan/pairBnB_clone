@@ -1,4 +1,26 @@
 this is show listing 
 
+<h3>This is show more</h3>
+  <p>Property Name: <%= @listing.listing_name %></p>
+  <p>Type: <%= @listing.listing_type %></p>
+  <p>Number of Rooms: <%= @listing.number_of_rooms %></p>
+  <p>City <%= @listing.city %></p>
+  <p>Price per/night: <%= @listing.price %></p>
+  <p>Good wifi: <%= @listing.wifi %></p>
+  <p>Smoker Friendly: <%= @listing.smoking_room %></p>
+  <p><%= @listing.active %></p>
+
+ 
+
+<% if current_user.superadmin? %>
+ <%= button_to "Verify Listing", verify_path(@listing) %>
+<% end %>
+
+
+
+
+
+  <%= link_to 'Home', root_path %>
+  
 
 
